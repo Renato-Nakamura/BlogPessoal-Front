@@ -1,0 +1,10 @@
+#img-bg{
+    background-image: url(../../assets/img/img-bg.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.tela-cheia{
+    height: 100vh;
+}
