@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faGlassWhiskey } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../model/User';
 import { AuthService } from '../service/auth.service';
 
@@ -40,8 +39,9 @@ export class CadastrarComponent implements OnInit {
     }else{
       this.authService.cadastrar(this.user).subscribe((resp: User) =>{
         this.user = resp
-        this.router.navigate(['/entrar'])
         alert('Usuário cadastrado com sucesso!')
+        this.router.navigate(['/entrar'])
+     
       })
     }
   }
