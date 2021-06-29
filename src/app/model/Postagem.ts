@@ -1,8 +1,5 @@
-import { Tema } from "./tema";
-import { User } from "./user";
-
-@JsonIgnoreProperties("postagem")
-private Tema tema;
+import { Tema } from "./Tema";
+import { User } from "./User";
 
 
 export class Postagem{

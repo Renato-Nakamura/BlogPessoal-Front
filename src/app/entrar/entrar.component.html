@@ -6,13 +6,14 @@
                     <h1 class="text-center mb-3">Entrar</h1>
                     <div class="form-group mb-3">
                         <label for="usuario">Usuário</label>
-                        <input class="form-control my-2" type="text" name="usuario" id="usuario" placeholder="Digite seu usuário">
+                        <input [(ngModel)]='userLogin.usuario' class="form-control my-2" type="text" name="usuario" id="usuario" placeholder="Digite seu usuário">
+
                         <label for="senha">Senha</label>
-                        <input class="form-control my-2 " type="password" name="senha" id="senha" placeholder="Digite seu senha">
+                        <input [(ngModel)]='userLogin.senha' class="form-control my-2 " type="password" name="senha" id="senha" placeholder="Digite seu senha">
 
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success">Entrar</button>
+                        <button (click)='entrar()' type="submit" class="btn btn-success">Entrar</button>
                     </div>
                     <hr class="mt-5 mb-5">
                     <p class="text-center">
