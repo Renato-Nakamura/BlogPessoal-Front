@@ -1,18 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+<nav class="navbar navbar-expand-lg navbar-dark b-fundo">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center text-white fs-16">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center  fs-16">
           <li class="nav-item">
-            <img src="../../assets/img/perfil-branco.svg" alt="Imagem do  usuário" class="img-fluid rounded-circle" width="40px">
+            <img src="{{foto}}" alt="Imagem do  usuário" class="img-fluid rounded-circle" width="40px">
           </li>
           <li class="nav-item">
-            <p class="m-0 fw-bold ps-1">Nome do usuário</p>
+            <p class="m-0 fw-bold ps-1">{{nome}}</p>
           </li>
           <li class="nav-item ms-1">
-              <a href="" class="text-decoration-none text-white">
+              <a href="" class="text-decoration-none ">
                 <i class="fas fa-edit"></i>
               </a>
             
@@ -20,7 +20,7 @@
         </ul>
         <ul class="navbar-nav ms-auto ">
             <li class="nav-item">
-                <a href="" class="mb-2 mb-lg-0 d-flex align-items-center text-white text-decoration-none fs-16">
+                <a (click)='sair()' href="" class="mb-2 mb-lg-0 d-flex align-items-center text-decoration-none fs-16">
                     <p class="m-0 fw-bold me-1">Sair</p>
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
