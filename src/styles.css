@@ -2,3 +2,11 @@
 html{
     scroll-behavior: smooth;
 }
+
+.fs-principal{
+    font-size: 5em;
+}
+
+.fs-secundario{
+    font-size: 1.5em;
+}

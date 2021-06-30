@@ -28,6 +28,7 @@ export class EntrarComponent implements OnInit {
       environment.foto =this.userLogin.foto
       environment.nome = this.userLogin.nome
       environment.token = this.userLogin.token
+      environment.fundo = 'bg-menu'
       
 /*       console.log(environment.foto)
       console.log(environment.nome)

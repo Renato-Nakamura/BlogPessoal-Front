@@ -12,14 +12,16 @@ export class MenuComponent implements OnInit {
 
   nome = environment.nome
   foto = environment.foto
-  
+  fundo:string
+
   constructor(
     private router: Router
   ) { }
 
   ngOnInit() {
-
+    this.fundo = environment.fundo
   }
+
   sair(){
     environment.foto=''
     environment.nome=''
