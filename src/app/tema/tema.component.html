@@ -7,9 +7,11 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <input type="text" class="form-control mt-5 " id="descricao"
+
+                        <input [(ngModel)]='tema.descricao' type="text" class="form-control mt-5 " id="descricao"
                         placeholder="Digite a descrição do tema">
-                        <button type="button" class="btn btn-primary mt-3">Cadastrar</button>
+                        <button (click)='criarTema()' type="button" class="btn btn-primary mt-3">Cadastrar</button>
+
                     </div>
                 </div>
             </div>
@@ -25,29 +27,21 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Tema</th>
+                    <th scope="col" class="text-end">Modificações</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                  <tr *ngFor='let item of listaTemas'>
+                    <th>{{item.id}}</th>
+                    <td>{{item.descricao}}</td>
+                    <td class="d-flex justify-content-end">
+                      <button class="btn btn-primary me-3" [routerLink]="['/tema-edit',item.id]">Editar</button>
+                      <button class="btn btn-danger" [routerLink]="['/tema-delete',item.id]">Apagar</button>
+                    </td>
+
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
+
                 </tbody>
               </table>
         </div>

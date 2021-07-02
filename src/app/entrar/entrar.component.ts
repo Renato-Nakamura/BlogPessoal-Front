@@ -30,10 +30,10 @@ export class EntrarComponent implements OnInit {
       environment.token = this.userLogin.token
       environment.fundo = 'bg-menu'
       
-/*       console.log(environment.foto)
+      console.log(environment.foto)
       console.log(environment.nome)
       console.log(environment.token)
-      console.log('fim') */
+      console.log('fim')
 
       this.router.navigate(['/inicio'])
     }, erro =>{

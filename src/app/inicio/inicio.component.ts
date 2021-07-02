@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+import { Tema } from '../model/Tema';
+
 
 @Component({
   selector: 'app-inicio',
@@ -9,8 +11,9 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class InicioComponent implements OnInit {
 
+  listaTema:Tema[]
   constructor(
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(){
@@ -24,4 +27,6 @@ export class InicioComponent implements OnInit {
     environment.fundo = 'bg-menu-2'
     console.log(environment.fundo)
   }
+
+
 }
