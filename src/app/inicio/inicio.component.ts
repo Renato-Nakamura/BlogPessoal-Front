@@ -24,6 +24,7 @@ export class InicioComponent implements OnInit {
   idTemaPostagem:number
   user:User = new User
   idUser:number
+  idSelecionado:number
 
 
   constructor(
@@ -82,13 +83,56 @@ export class InicioComponent implements OnInit {
     this.postagem.tema= this.tema
     this.user.id = environment.id
     this.postagem.usuario = this.user
-
+    console.log(this.postagem)
 
     this.postagemService.postPostagem(this.postagem).subscribe((resp:Postagem)=>{
       this.postagem = resp
       alert('Postagem feita')
       this.pegarPostagens()
+      this.pegarUserId()
+      this.postagem=new Postagem
     })
   }
 
+/* Deletar posts */
+  selecionado(id:number){
+    this.idSelecionado = id
+
+  }
+  pegarPostagemId(){
+    this.postagemService.getById(this.idSelecionado).subscribe((resp:Postagem)=>{
+      this.postagem = resp
+    })
+  }
+
+  deletarPost(){
+    this.postagemService.deletePostagem(this.idSelecionado).subscribe(()=>{
+      alert('Postagem deletada com sucesso')
+      this.postagem=new Postagem
+      this.pegarPostagens()
+      this.pegarUserId()
+    })
+  }
+
+  alterar(){
+    this.tema.id = this.idTema
+    this.postagem.tema= this.tema
+    this.user.id = environment.id
+    this.postagem.usuario = this.user
+
+    this.postagemService.putPostagem(this.postagem).subscribe((resp:Postagem)=>{
+      this.postagem = resp
+      alert("Postagem alterado com sucesso")
+      console.log(this.postagem)
+      this.postagem=new Postagem
+      this.idTema=0
+      this.pegarPostagens()
+      this.pegarUserId()
+      
+    })
+  }
+
+  limpar(){
+    this.postagem = new Postagem
+  }
 }
