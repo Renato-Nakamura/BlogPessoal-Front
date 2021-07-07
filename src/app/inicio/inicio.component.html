@@ -11,7 +11,7 @@
                 Compartilhe suas ideias e dicas para facilitar no crescimento dos futuros alunos da Generation Brasil
             </p>
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#novaPostagem">Adicionar postagem</button>
+                <button (click)='pegarTemas()' type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#novaPostagem">Adicionar postagem</button>
                 <a href="#pills-tab" class="btn btn-outlone-primary">Ver postagens</a>
             </div>
         </div>
@@ -23,21 +23,61 @@
       <button class="nav-link active" id="pills-todasPostagens-tab" data-bs-toggle="pill" data-bs-target="#pills-todasPostagens" type="button" role="tab" aria-controls="pills-todasPostagens" aria-selected="true">Todas as postagens</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="pills-minhasPostagens-tab" data-bs-toggle="pill" data-bs-target="#pills-minhasPostagens" type="button" role="tab" aria-controls="pills-minhasPostagens" aria-selected="false">Minhas</button>
+      <button (click)='pegarUserId()' class="nav-link" id="pills-minhasPostagens-tab" data-bs-toggle="pill" data-bs-target="#pills-minhasPostagens" type="button" role="tab" aria-controls="pills-minhasPostagens" aria-selected="false">Minhas postagens</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="pills-temaPostagens-tab" data-bs-toggle="pill" data-bs-target="#pills-temaPostagens" type="button" role="tab" aria-controls="pills-temaPostagens" aria-selected="false">Por tema</button>
+      <button (click)='pegarTemas()' class="nav-link" id="pills-temaPostagens-tab" data-bs-toggle="pill" data-bs-target="#pills-temaPostagens" type="button" role="tab" aria-controls="pills-temaPostagens" aria-selected="false">Postagens por tema</button>
     </li>
   </ul>
   <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-todasPostagens" role="tabpanel" aria-labelledby="pills-todasPostagens-tab">
         <h5>Todas as postagens</h5>
+        <div >
+          <div class="card" style="width: 18rem;" *ngFor='let items of listaPostagem'>
+            <div class="card-body">
+              <h5 class="card-title">{{items.titulo}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{items.tema.descricao}}</h6>
+              <p class="card-text">{{items.texto}}</p>
+              <p class="card-text"> By: {{items.usuario.nome}}</p>
+              <p class="card-text">{{items.date | date: 'dd/MM/yyyy' }} às {{items.date | date: 'HH:mm' }}</p>
+  
+            </div>
+          </div>
+
+        </div>
     </div>
-    <div class="tab-pane fade" id="pills-minhasPostagens" role="tabpanel" aria-labelledby="pills-minhasPostagens-tab">
+    <div class="tab-pane fade " id="pills-minhasPostagens" role="tabpanel" aria-labelledby="pills-minhasPostagens-tab">
         <h5>Minhas postagens</h5>
+        <div class="card" style="width: 18rem;" *ngFor='let items of user.postagem'>
+          <div class="card-body ">
+            <h5 class="card-title">{{items.titulo}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{items.tema.descricao}}</h6>
+            <p class="card-text">{{items.texto}}</p>
+            <p class="card-text">{{items.date | date: 'dd/MM/yyyy' }} às {{items.date | date: 'HH:mm' }}</p>
+            <button class="btn btn-secondary me-3">editar</button>
+            <button class="btn btn-danger">deletar</button>
+          </div>
+        </div>
+
     </div>
     <div class="tab-pane fade" id="pills-temaPostagens" role="tabpanel" aria-labelledby="pills-temaPostagens-tab">
         <h5>Postagens por tema</h5>
+        <div class="form-group mt-3">
+          <select  [(ngModel)]='idTemaPostagem' name="tema" id="tema" class="form-control"  >
+              <option *ngFor='let items of listaTema' value="{{items.id}}">{{items.descricao}}</option>
+          </select>
+          <button class="btn btn-success" (click)='pegarTemaId()' >Pesquisar</button>
+        </div>
+
+        <div class="card" style="width: 18rem;" *ngFor='let items of temaPostagem.postagem'>
+          <div class="card-body">
+            <h5 class="card-title">{{items.titulo}}</h5>
+            <p class="card-text">{{items.texto}}</p>
+            <p class="card-text"> By: {{items.usuario.nome}}</p>
+            <p class="card-text">{{items.date | date: 'dd/MM/yyyy' }} às {{items.date | date: 'HH:mm' }}</p>
+
+          </div>
+        </div>
     </div>
   </div>
 
@@ -54,25 +94,25 @@
         <div class="modal-body">
           <div class="form-group">
               <label  for="titulo">Título: </label>
-              <input class="form-control" type="text" name="titulo" id="titulo" placeholder="Título da sua postagem">
+              <input [(ngModel)]='postagem.titulo' class="form-control" type="text" name="titulo" id="titulo" placeholder="Título da sua postagem">
           </div>
           <div class="form-group mt-3">
             <label  for="texto">Conteúdo: </label>
-            <textarea class="form-control" name="texto" id="texto" cols="30" rows="3" placeholder="Insira sua mensagem e contribua com a comunidade!"></textarea>
+            <textarea [(ngModel)]='postagem.texto' class="form-control" name="texto" id="texto" cols="30" rows="3" placeholder="Insira sua mensagem e contribua com a comunidade!"></textarea>
         </div>
         <div class="form-group mt-3">
             <label  for="tema">
                 Escolha um tema ou <a (click)='troca()' routerLink='/tema' data-bs-dismiss="modal">crie um novo</a> 
             </label>
-            <select name="tema" id="tema" class="form-control" >
-                <option value="">Temas</option>
+            <select  [(ngModel)]='idTema' name="tema" id="tema" class="form-control" (change)='pegarTemasId()' >
+                <option *ngFor='let items of listaTema' value="{{items.id}}">{{items.descricao}}</option>
             </select>
         </div>
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-primary">Publicar</button>
+          <button (click)='postar()' type="button" class="btn btn-primary" data-bs-dismiss="modal" >Publicar</button>
         </div>
       </div>
     </div>
