@@ -1,0 +1,11 @@
+.list-style-none{
+    list-style: none;
+}
+
+.fs-32{
+    font-size: 24pt;
+}
+
+.redes:hover{
+    color: cornflowerblue;
+}

@@ -1,0 +1,49 @@
+<app-menu></app-menu>
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center bg-tema">
+        <div class="col-md-12 text-center">
+            <h1 class="fs-principal mt-5">Temas </h1>
+            <h5 class="fs-secundario">Veja aqui todos os temas cadastrados ou cadastre um novo</h5>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-3">
+                    <div class="form-group">
+
+                        <input [(ngModel)]='tema.descricao' type="text" class="form-control mt-5 " id="descricao"
+                        placeholder="Digite a descrição do tema">
+                        <button (click)='criarTema()' type="button" class="btn btn-primary mt-3">Cadastrar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-5">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tema</th>
+                    <th scope="col" class="text-end">Modificações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor='let item of listaTemas'>
+                    <th>{{item.id}}</th>
+                    <td>{{item.descricao}}</td>
+                    <td class="d-flex justify-content-end">
+                      <button class="btn btn-primary me-3" [routerLink]="['/tema-edit',item.id]">Editar</button>
+                      <button class="btn btn-danger" [routerLink]="['/tema-delete',item.id]">Apagar</button>
+                    </td>
+
+                  </tr>
+
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

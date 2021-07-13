@@ -1,0 +1,16 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">EDITAR TEMA</h1>
+            <div class="form-group mt-3">
+                <label for="descricao" >Descrição do tema:</label>
+                <input [(ngModel)]='tema.descricao' type="text" name="descricao" id="descricao" class="form-control">
+                <div class="d-flex justify-content-center mt-3 mb-3">
+                    <button routerLink='/tema' class="btn btn-outline-danger me-3">Cancelar</button>
+                    <button (click)='alterarTema()' class="btn btn-success">Alterar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
