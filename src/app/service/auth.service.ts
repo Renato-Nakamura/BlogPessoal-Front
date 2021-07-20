@@ -26,11 +26,11 @@ export class AuthService {
 
 
   entrar(userLogin: UserLogin): Observable<UserLogin>{
-    return this.http.post<UserLogin>('http://localhost:8080/usuario/login',userLogin)
+    return this.http.post<UserLogin>(`${environment.uri}/usuario/login`,userLogin)
   }
 
   cadastrar(user: User): Observable<User>{
-    return this.http.post<User>('http://localhost:8080/usuario',user)
+    return this.http.post<User>(`${environment.uri}/usuario`,user)
   }
 
   getById(id:number):Observable<User>{

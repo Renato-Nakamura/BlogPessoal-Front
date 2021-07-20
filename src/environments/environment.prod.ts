@@ -5,5 +5,5 @@ export const environment = {
   nome: '',
   foto: '',
   fundo: '',
-  uri: 'http://localhost:8080',
+  uri: 'https://apiblogrenatonakamura.herokuapp.com',
 };
