@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Tema } from '../model/Tema';
+import { AuthService } from '../service/auth.service';
 import { TemaService } from '../service/tema.service';
 
 @Component({
@@ -15,10 +16,13 @@ export class TemaComponent implements OnInit {
   listaTemas: Tema[]
   constructor(
     private router: Router,
-    private temaService: TemaService
+    private temaService: TemaService,
+    private authService:AuthService
   ) { }
 
   ngOnInit() {
+    this.authService.temUser()
+    environment.fundo = 'bg-menu-2'
     if(environment.token == ''){
       this.router.navigate(['/entrar'])
     }

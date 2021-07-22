@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class MenuComponent implements OnInit {
 
-  nome = environment.nome
-  foto = environment.foto
+  nome:string
+  foto: string
   fundo:string
 
   constructor(
@@ -20,12 +20,15 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.fundo = environment.fundo
+    this.foto =environment.foto
+    this.nome = environment.nome
   }
 
   sair(){
     environment.foto=''
     environment.nome=''
     environment.token=''
+    localStorage.removeItem('user')
     this.router.navigate(['/entrar'])
   }
 

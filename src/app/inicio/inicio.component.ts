@@ -35,9 +35,12 @@ export class InicioComponent implements OnInit {
   ) { }
 
   ngOnInit(){
+    this.authService.temUser()
+    environment.fundo = 'bg-menu'
     if(environment.token == ''){
       this.router.navigate(['/entrar'])
     }
+    
     this.temaService.refreshToken()
     this.postagemService.refreshToken()
     this.authService.refreshToken()

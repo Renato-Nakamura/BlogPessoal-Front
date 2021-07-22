@@ -13,6 +13,18 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) {  }
+
+  temUser(){
+    let userSalvo = localStorage.getItem('user')
+    if(userSalvo!= null){
+      let user = JSON.parse(userSalvo)
+      environment.foto =user.foto
+      environment.nome = user.nome
+      environment.token = user.token
+
+      environment.id = user.id
+    }
+  }
   
   token ={
     headers: new HttpHeaders().set('Authorization',environment.token)

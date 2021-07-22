@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tema } from 'src/app/model/Tema';
+import { AuthService } from 'src/app/service/auth.service';
 import { TemaService } from 'src/app/service/tema.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -17,9 +18,11 @@ export class TemaEditComponent implements OnInit {
     private router: Router,
     private temaService: TemaService,
     private route: ActivatedRoute,
+    private authService:AuthService
   ) { }
 
   ngOnInit(){
+    this.authService.temUser()
     if(environment.token == ''){
       this.router.navigate(['/entrar'])
     }

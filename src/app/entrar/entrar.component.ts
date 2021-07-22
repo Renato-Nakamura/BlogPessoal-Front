@@ -25,16 +25,17 @@ export class EntrarComponent implements OnInit {
   entrar(){
     this.authService.entrar(this.userLogin).subscribe((resp: UserLogin)=> {
       this.userLogin = resp
+      localStorage.setItem('user',JSON.stringify(this.userLogin))
       environment.foto =this.userLogin.foto
       environment.nome = this.userLogin.nome
       environment.token = this.userLogin.token
       environment.fundo = 'bg-menu'
       environment.id = this.userLogin.id
       
-      console.log(environment.foto)
-      console.log(environment.nome)
-      console.log(environment.id)
-      console.log('fim')
+      // console.log(environment.foto)
+      // console.log(environment.nome)
+      // console.log(environment.id)
+      // console.log('fim')
 
       this.router.navigate(['/inicio'])
     }, erro =>{
